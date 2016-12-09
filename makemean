@@ -19,7 +19,7 @@ mkdir assets
 mkdir partials
 mkdir views
 cd views
-curl -o index.html https://rawgit.com/dsmit192/mean_setup/master/index.html
+curl -o index.ejs https://rawgit.com/dsmit192/mean_setup/master/index.html
 cd ../..
 mkdir server
 cd server/
