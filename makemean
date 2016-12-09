@@ -6,10 +6,71 @@ mkdir $project
 cp package.json $project
 cd $project
 npm install
+bower install angular
+bower install angular-route
 mkdir client
-mkdir server
 cd client
+mkdir static
+cd static
+touch styles.css
+echo "h3 { color: blue;}" >> styles.css
+cd ..
 mkdir assets
 mkdir partials
 mkdir views
+cd views
 curl -o index.html https://rawgit.com/dsmit192/mean_setup/master/index.html
+cd ../..
+mkdir server
+cd server/
+mkdir config
+cd config
+touch mongoose.js
+echo "var mongoose = require('mongoose');" >> mongoose.js
+echo "var fs       = require('fs');" >> mongoose.js
+echo "var path     = require('path');" >> mongoose.js
+echo "" >> mongoose.js
+echo "mongoose.connect('mongodb://localhost/"$project"s');" >> mongoose.js
+echo "" >> mongoose.js
+echo "var models_path = path.join(__dirname, './../models');" >> mongoose.js
+echo "" >> mongoose.js
+echo "fs.readdirSync(models_path).forEach(function(file) {
+ if(file.indexOf('.js') >= 0) {
+   require(models_path + '/' + file);
+ }
+});" >> mongoose.js
+touch routes.js
+echo "var "$project"s = require('../controllers/"$project"s.js');" >> routes.js
+echo "" >> routes.js
+echo "module.exports = function(app) {
+  app.get('/', function(req, res) {
+    res.render('index');
+  });
+};" >> routes.js
+cd ..
+mkdir controllers
+cd controllers
+touch "$project"s.js
+echo "var mongoose = require('mongoose');" >> "$project"s.js
+echo "var Example = mongoose.model('Example')" >> "$project"s.js
+echo "" >> "$project"s.js
+echo "module.exports = { //CRUD functions go here" >> "$project"s.js
+echo "" >> "$project"s.js
+echo "}" >> "$project"s.js
+cd ..
+mkdir models
+cd models
+touch "$project".js
+echo "var mongoose   = require('mongoose');" >> "$project".js
+echo "" >> "$project".js
+echo "//Schemas go here!" >> "$project".js
+echo "var ExampleSchema = new mongoose.Schema({
+//what is in the schema?
+});" >> "$project".js
+echo "var Example = mongoose.model('Example', ExampleSchema)" >> "$project".js
+cd ../..
+curl -o server.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/server.js
+timer=.1
+sleep $timer && xdg-open http://localhost:8000/ &
+nodemon server.js
+atom ..
