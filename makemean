@@ -1,0 +1,91 @@
+
+#!/bin/bash
+echo "What should I call the project?"
+read project
+mkdir $project
+cp package.json $project
+cd $project
+npm install
+mkdir client
+mkdir server
+cd client
+mkdir static
+mkdir views
+cd views
+touch index.ejs
+echo "<h1> Hello World </h1>" >> index.ejs
+cd ../..
+cd server/
+mkdir config
+cd config
+touch mongoose.js
+echo "var mongoose = require('mongoose');" >> mongoose.js
+echo "var fs       = require('fs');" >> mongoose.js
+echo "var path     = require('path');" >> mongoose.js
+echo "" >> mongoose.js
+echo "mongoose.connect('mongodb://localhost/"$project"s');" >> mongoose.js
+echo "" >> mongoose.js
+echo "var models_path = path.join(__dirname, './../models');" >> mongoose.js
+echo "" >> mongoose.js
+echo "fs.readdirSync(models_path).forEach(function(file) {
+ if(file.indexOf('.js') >= 0) {
+   require(models_path + '/' + file);
+ }
+});" >> mongoose.js
+touch routes.js
+echo "var "$project"s = require('../controllers/"$project"s.js');" >> routes.js
+echo "" >> routes.js
+echo "module.exports = function(app) {
+  app.get('/', function(req, res) {
+    res.render('index');
+  });
+};" >> routes.js
+cd ..
+mkdir controllers
+cd controllers
+touch "$project"s.js
+echo "var mongoose = require('mongoose');" >> "$project"s.js
+echo "var Example = mongoose.model('Example')" >> "$project"s.js
+echo "" >> "$project"s.js
+echo "module.exports = { //CRUD functions go here" >> "$project"s.js
+echo "" >> "$project"s.js
+echo "}" >> "$project"s.js
+cd ..
+mkdir models
+cd models
+touch "$project".js
+echo "var mongoose   = require('mongoose');" >> "$project".js
+echo "" >> "$project".js
+echo "//Schemas go here!" >> "$project".js
+echo "var ExampleSchema = new mongoose.Schema({
+//what is in the schema?
+});" >> "$project".js
+echo "var Example = mongoose.model('Example', ExampleSchema)" >> "$project".js
+cd ../..
+touch server.js
+echo "var mongoose = require('mongoose');" >> server.js
+echo "var express = require('express');" >> server.js
+echo "var path = require('path');" >> server.js
+echo "" >> server.js
+echo "var app = express();" >> server.js
+echo "" >> server.js
+echo "var bodyParser = require('body-parser');" >> server.js
+echo "app.use(bodyParser.urlencoded({extended: true}));" >> server.js
+echo "" >> server.js
+echo "app.use(express.static(path.join(__dirname, './client/static')));" >> server.js
+echo "" >> server.js
+echo "app.set('views', path.join(__dirname, './client/views'));" >> server.js
+echo "app.set('view engine', 'ejs');" >> server.js
+echo "require('./server/config/mongoose.js');" >> server.js
+echo "" >> server.js
+echo "var routes_setter = require('./server/config/routes.js');" >> server.js
+echo "" >> server.js
+echo "routes_setter(app);" >> server.js
+echo "" >> server.js
+echo "app.listen(8000, function() {
+  console.log('listening on port 8000');
+});" >> server.js
+timer=.1
+sleep $timer && xdg-open http://localhost:8000/ &
+nodemon server.js
+atom ..
