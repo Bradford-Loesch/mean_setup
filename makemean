@@ -12,4 +12,4 @@ cd client
 mkdir assets
 mkdir partials
 mkdir views
-curl -o index.html https://raw.githubusercontent.com/dsmit192/mean_setup/master/index.html
+curl -o index.html https://rawgit.com/dsmit192/mean_setup/master/index.html
