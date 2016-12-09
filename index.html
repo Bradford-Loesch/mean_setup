@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+  <head>
+    <meta charset="utf-8">
+    <title> Index </title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+	  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js"></script>
+
+    <script type="text/javascript">
+      var module = angular.module('myapp', []);
+      module.controller('mycontroller', ["$scope", "$http", function($scope, $http){
+        console.log($scope);
+        console.log($http);
+      }])
+
+    </script>
+
+  </head>
+  <body>
+
+    <div id='wrapper' ng-controller='mycontroller'>
+
+      <h2>Hello World</h2>
+
+    </div>
+
+  </body>
+</html>
