@@ -8,7 +8,7 @@ require("./server/config/mongoose.js");
 var routes = require("./server/config/routes.js");
 routes(app);
 
-app.use(express.static("./client/static"));
+app.use(express.static("./client"));
 app.use(express.static("./node_modules"));
 
 

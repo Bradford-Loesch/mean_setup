@@ -12,7 +12,7 @@ npm install
 mkdir client
 cd client
 # create the index file in the root of client directory
-curl -o index.html https://rawgit.com/dsmit192/mean_setup/master/index.html
+curl -o index.html https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/index.html
 mkdir styles
 cd styles
 touch styles.css
@@ -32,16 +32,16 @@ curl -o factory.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/
 curl -o contoller.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/clientController.js
 cd ../..
 # end of client side, beginning server side
-curl -o server.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/server.js
+curl -o server.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/server.js
 mkdir server
 cd server/
 mkdir config
 mkdir controllers
 mkdir models
 cd config
-curl -o routes.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/routes.js
+curl -o routes.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/routes.js
 #appends this line to the beginning of routes file (needs to take in variable file name)
-sed -i '1s/^/var allItems = require("../controllers/$projects.js");\n/' routes.js
+echo "var allItems = require('../controllers/$projects.js')"|cat - routes.js > /tmp/out && mv /tmp/out routes.js
 touch mongoose.js
 # echo is used here (rather than curl), because mongoose.js needs to take in variables
 echo "var mongoose = require("mongoose");" >> mongoose.js
@@ -50,12 +50,12 @@ echo "mongoose.connect('mongodb://localhost/"$project"s');" >> mongoose.js
 echo "" >> mongoose.js
 echo "//requires every model" >> mongoose.js
 # first model is the same name as the project
-echo "require("../models/$project.js");"
+echo "require('../models/$project.js');" >> mongoose.js
 cd ../controllers
-curl -o $projects.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sampleServerController.js
+curl -o "$project"s.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/sampleServerController.js
 cd ../models
-curl -o $project.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sampleSchemas.js
-cd ..
+curl -o $project.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/sampleSchemas.js
+cd ../..
 timer=.1
 sleep $timer && xdg-open http://localhost:8000/ &
 nodemon server.js
