@@ -3,69 +3,56 @@
 echo "What should I call the project?"
 read project
 mkdir $project
-cp package.json $project
 cd $project
+# create the package.json file
+curl -o package.json https://rawgit.com/dsmit192/mean_setup/master/package.json
+# install node modules
 npm install
 mkdir client
 cd client
-mkdir static
+# create the index file in the root of client directory
 curl -o index.html https://rawgit.com/dsmit192/mean_setup/master/index.html
+mkdir styles
+cd styles
 touch styles.css
+#this coloring is to test the linking in index.html
 echo "h3 { color: blue;}" >> styles.css
 cd ..
 mkdir partials
-mkdir views
-cd views
+cd partials
+# create the main partial to be displayed on index.html
+curl -o main.html https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/main.html
+cd ..
+mkdir scripts
+cd scripts
+# create the 3 files from generic boilerplate hosted on github
+curl -o app.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/app.js
+curl -o factory.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/clientFactory.js
+curl -o contoller.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/clientController.js
 cd ../..
+# end of client side, beginning server side
 mkdir server
 cd server/
 mkdir config
+mkdir controllers
+mkdir models
+curl -o server.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/server.js
 cd config
-touch mongoose.js
-echo "var mongoose = require('mongoose');" >> mongoose.js
-echo "var fs       = require('fs');" >> mongoose.js
-echo "var path     = require('path');" >> mongoose.js
-echo "" >> mongoose.js
+curl -o routes.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/routes.js
+touch moongoose.js
+# echo is used here (rather than curl), because mongoose.js needs to take in variables
+echo "var mongoose = require("mongoose");" >> mongoose.js
+# database name is the same as the project
 echo "mongoose.connect('mongodb://localhost/"$project"s');" >> mongoose.js
 echo "" >> mongoose.js
-echo "var models_path = path.join(__dirname, './../models');" >> mongoose.js
-echo "" >> mongoose.js
-echo "fs.readdirSync(models_path).forEach(function(file) {
- if(file.indexOf('.js') >= 0) {
-   require(models_path + '/' + file);
- }
-});" >> mongoose.js
-touch routes.js
-echo "var "$project"s = require('../controllers/"$project"s.js');" >> routes.js
-echo "" >> routes.js
-echo "module.exports = function(app) {
-  app.get('/', function(req, res) {
-    res.render('index');
-  });
-};" >> routes.js
-cd ..
-mkdir controllers
-cd controllers
-touch "$project"s.js
-echo "var mongoose = require('mongoose');" >> "$project"s.js
-echo "var Example = mongoose.model('Example')" >> "$project"s.js
-echo "" >> "$project"s.js
-echo "module.exports = { //CRUD functions go here" >> "$project"s.js
-echo "" >> "$project"s.js
-echo "}" >> "$project"s.js
-cd ..
-mkdir models
-cd models
-touch "$project".js
-echo "var mongoose   = require('mongoose');" >> "$project".js
-echo "" >> "$project".js
-echo "//Schemas go here!" >> "$project".js
-echo "var ExampleSchema = new mongoose.Schema({
-//what is in the schema?
-});" >> "$project".js
-echo "var Example = mongoose.model('Example', ExampleSchema)" >> "$project".js
+echo "//requires every model" >> mongoose.js
+# first model is the same name as the project
+echo "require("../models/$project.js");"
+cd ../controllers
+curl -o $projects.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sampleServerController.js
+cd ../models
+curl -o $project.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sampleSchemas.js
 cd ../..
-curl -o server.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/server.js
 timer=.1
 sleep $timer && xdg-open http://localhost:8000/ &
 nodemon server.js

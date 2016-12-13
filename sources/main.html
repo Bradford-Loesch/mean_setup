@@ -1,0 +1,16 @@
+<div ng-controller="mainController">
+
+	<form ng-submit="submitForm(newItem);">
+		<input type="text" ng-model="newItem.title">
+		<input type="date" ng-model="newItem.dueDate">
+		<input type="submit" value="Submit">
+	</form>
+
+	<ul>
+		<li ng-repeat="item in items | orderBy: 'dueDate'">
+			<span ng-bind="item.title"></span> -
+			<span ng-bind="item.dueDate | date:'MMM dd, yyyy'"></span>
+		</li>
+	</ul>
+
+</div>
