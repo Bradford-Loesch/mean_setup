@@ -5,7 +5,8 @@ read project
 mkdir $project
 cd $project
 # create the package.json file
-curl -o package.json https://rawgit.com/dsmit192/mean_setup/master/package.json
+curl -o package.json https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/package.json
+npm cache clean
 # install node modules
 npm install
 mkdir client
@@ -31,15 +32,17 @@ curl -o factory.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/
 curl -o contoller.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/clientController.js
 cd ../..
 # end of client side, beginning server side
+curl -o server.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/server.js
 mkdir server
 cd server/
 mkdir config
 mkdir controllers
 mkdir models
-curl -o server.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/server.js
 cd config
 curl -o routes.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/routes.js
-touch moongoose.js
+#appends this line to the beginning of routes file (needs to take in variable file name)
+sed -i '1s/^/var allItems = require("../controllers/$projects.js");\n/' routes.js
+touch mongoose.js
 # echo is used here (rather than curl), because mongoose.js needs to take in variables
 echo "var mongoose = require("mongoose");" >> mongoose.js
 # database name is the same as the project
@@ -52,7 +55,7 @@ cd ../controllers
 curl -o $projects.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sampleServerController.js
 cd ../models
 curl -o $project.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sampleSchemas.js
-cd ../..
+cd ..
 timer=.1
 sleep $timer && xdg-open http://localhost:8000/ &
 nodemon server.js

@@ -3,7 +3,7 @@ var app = express();
 
 app.use(require("body-parser").json());
 
-require("./server/config/database.js");
+require("./server/config/mongoose.js");
 
 var routes = require("./server/config/routes.js");
 routes(app);
