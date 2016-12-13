@@ -6,20 +6,16 @@ mkdir $project
 cp package.json $project
 cd $project
 npm install
-bower install angular
-bower install angular-route
 mkdir client
 cd client
 mkdir static
-cd static
+curl -o index.html https://rawgit.com/dsmit192/mean_setup/master/index.html
 touch styles.css
 echo "h3 { color: blue;}" >> styles.css
 cd ..
-mkdir assets
 mkdir partials
 mkdir views
 cd views
-curl -o index.ejs https://rawgit.com/dsmit192/mean_setup/master/index.html
 cd ../..
 mkdir server
 cd server/
@@ -73,4 +69,3 @@ curl -o server.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/s
 timer=.1
 sleep $timer && xdg-open http://localhost:8000/ &
 nodemon server.js
-atom ..

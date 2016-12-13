@@ -9,11 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.6.0",
+    "angular-route": "^1.6.0",
     "body-parser": "^1.15.2",
-    "ejs": "^2.5.3",
     "express": "^4.14.0",
-    "mongoose": "^4.7.1"
-  },
-  "devDependencies": {},
-  "description": ""
+    "mongoose": "^4.7.2"
+  }
 }
