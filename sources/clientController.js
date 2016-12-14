@@ -8,13 +8,13 @@
 app.controller("mainController", ["$scope", "mainFactory", function ($scope, mainFactory) {
     $scope.items = [];
 
-    todoItemFactory.index(function (items) {
+    mainFactory.index(function (items) {
         $scope.items = items;
     });
 
     $scope.submitForm = function (newItem)
     {
-        todoItemFactory.create(newItem, function (createdItem) {
+        mainFactory.create(newItem, function (createdItem) {
             $scope.items.push(createdItem);
 
             // Reset Form

@@ -29,7 +29,7 @@ cd scripts
 # create the 3 files from generic boilerplate hosted on github
 curl -o app.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/app.js
 curl -o factory.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/clientFactory.js
-curl -o contoller.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/clientController.js
+curl -o controller.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/clientController.js
 cd ../..
 # end of client side, beginning server side
 curl -o server.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/server.js
@@ -41,10 +41,10 @@ mkdir models
 cd config
 curl -o routes.js https://raw.githubusercontent.com/dsmit192/mean_setup/master/sources/routes.js
 #appends this line to the beginning of routes file (needs to take in variable file name)
-echo "var allItems = require('../controllers/$projects.js')"|cat - routes.js > /tmp/out && mv /tmp/out routes.js
+echo "var allItems = require('../controllers/$projects.js');"|cat - routes.js > /tmp/out && mv /tmp/out routes.js
 touch mongoose.js
 # echo is used here (rather than curl), because mongoose.js needs to take in variables
-echo "var mongoose = require("mongoose");" >> mongoose.js
+echo "var mongoose = require('mongoose');" >> mongoose.js
 # database name is the same as the project
 echo "mongoose.connect('mongodb://localhost/"$project"s');" >> mongoose.js
 echo "" >> mongoose.js
