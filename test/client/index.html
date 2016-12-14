@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <meta charset="utf-8">
+    <title> Index </title>
+      <script type="text/javascript" src="/angular/angular.js"></script>
+      <script type="text/javascript" src="/angular-route/angular-route.js"></script>
+      <link rel="stylesheet" href="/styles/styles.css">
+
+      <script type="text/javascript" src="/scripts/app.js"></script>
+      <script type="text/javascript" src="/scripts/factory.js"></script>
+      <script type="text/javascript" src="/scripts/controller.js"></script>
+  </head>
+
+  <body>
+
+      <h3> I should be blue </h3><hr>
+
+      <h2>Hello Partials:</h2>
+      
+      <div ng-view=""><!-- This is where the partials will be loaded (ng-route) --></div>
+
+  </body>
+</html>

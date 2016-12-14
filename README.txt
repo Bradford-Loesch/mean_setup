@@ -1,47 +1,41 @@
-This bash script build upon the Mongoose script with some minor tweaks.
-
+This bash script will build a full MEAN project complete with Angular factory and controller.
 
 ProjectName
-  bower_components (are installed for you)
-    angular
-    angular-route
+├── client
+│   ├── index.html
+│   ├── partials
+│   │   └── main.html
+│   ├── scripts
+│   │   ├── app.js
+│   │   ├── controller.js
+│   │   └── factory.js
+│   └── styles
+│       └── styles.css
+|
+├── node_modules (angular, angular-route, body-parser, express, mongoose)
+|
+├── package.json
+|
+├── server
+│   ├── config
+│   │   ├── mongoose.js
+│   │   └── routes.js
+│   ├── controllers
+│   │   └── tests.js
+│   └── models
+│       └── test.js
+└── server.js
 
-  client
-    assets
-    partials
-		static
-      styles.css
-		views
-			index.ejs (which is obtained from this repo)
 
-	node_modules (are installed for you)
+  Under the hood:
+The script handles the npm installs of the required packages.
+The script will open your default browser to localhost:8000, showing the index page.
 
-	server
-		config
-			mongoose.js
-			routes.js
-		controllers
-			projectnames.js
-		models
-			projectname.js
-
-	server.js (which is obtained from this repo)
-
-Under the hood:
-The script handles the npm and bower installs of the required packages.
-It also runs nodemon for you.
   Please note:
-You must run mongod independant of this script!!!
+You must run 'mongod' independant of this script!!!
 
-At the end of the script the browser will open at localhost:8000.
-If everything worked you should see "Hello World" and
-The text "I should be blue" shouldn't lie indicating the stylesheet is properly linked.
+  To run this script:
+Copy the script into a sibling directory of where you want the project created.
+Run with ./makemean
 
-Atom editor will open the parent directory of the Project.
-
-To run this script:
-Copy the scipt and the package.json to a sibling directory of where you want the project created.
-Run with ./makemeangit add
-
-Located in this repo is a demo of what the script builds.
-Enjoy!
+The 'test' directory in this repo is a sample of what the script builds.
