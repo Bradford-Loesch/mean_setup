@@ -1,12 +1,12 @@
 {
-  "name": "test_json",
+  "name": "simple_mean",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bradford Loesch",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.6.0",

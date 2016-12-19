@@ -1,13 +1,9 @@
+var CONTROLLERNAME = require('./../controllers/CONTROLLERNAME.js');
 
-/*
-    Routes File
-
-    Tells app to listen for url-routes,
-    passes work off to Controllers
-*/
-
-module.exports = function (app)
-{
-    app.get("/items", allItems.index);
-    app.post("/items", allItems.create);
-};
+module.exports = function(app) {
+    app.get('/ROUTENAME', CONTROLLERNAME.index);
+    app.get('/ROUTENAME/:id', CONTROLLERNAME.show);
+    app.post('/ROUTENAME', CONTROLLERNAME.create);
+    app.put('/ROUTENAME/:id', CONTROLLERNAME.update);
+    app.delete('/ROUTENAME/:id', CONTROLLERNAME.delete);
+}

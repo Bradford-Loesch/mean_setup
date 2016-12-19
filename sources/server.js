@@ -1,17 +1,20 @@
-var express = require("express");
-var app = express();
+var mongoose = require( 'mongoose' ),
+    express  = require( 'express' ),
+    bp       = require( 'body-parser' ),
+    path     = require( 'path' ),
+    database = require('./server/config/mongoose.js'),
+    routes_setter = require('./server/config/routes.js'),
+    root     = __dirname,
+    port     = process.env.PORT || 8000,
+    app      = express();
 
-app.use(require("body-parser").json());
+app.use( express.static( path.join( root, 'client' )));
+app.use( express.static( path.join( root, 'server' )));
+app.use( express.static( path.join( root, 'node_modules' )));
+app.use(bp.json());
 
-require("./server/config/mongoose.js");
+routes_setter(app);
 
-var routes = require("./server/config/routes.js");
-routes(app);
-
-app.use(express.static("./client"));
-app.use(express.static("./node_modules"));
-
-
-app.listen(8000, function () {
-    console.log("Listening");
+app.listen( port, function() {
+  console.log( `server running on port ${ port }` );
 });

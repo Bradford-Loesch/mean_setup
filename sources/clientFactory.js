@@ -1,7 +1,3 @@
-/*
-    Makes HTTP requests to server,
-    passes data back to controllers
-*/
 
 app.factory("mainFactory", ["$http", function ($http) {
 
@@ -18,8 +14,6 @@ app.factory("mainFactory", ["$http", function ($http) {
             finishedCreatingItem(response.data.item);
         });
     };
-
-    // other factory functions go here
 
     return factory;
 }]);
