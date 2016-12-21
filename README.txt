@@ -9,7 +9,7 @@ ProjectName
 │   │   ├── app.js
 │   │   ├── controller.js
 │   │   └── factory.js
-│   └── styles
+│   └── assets
 │       └── styles.css
 |
 ├── node_modules (angular, angular-route, body-parser, express, mongoose)
@@ -36,6 +36,6 @@ You must run 'mongod' independant of this script!!!
 
   To run this script:
 Copy the script into a sibling directory of where you want the project created.
-Run with ./makemean
+Run with ./makemean or ./makemean.sh in a bash shell
 
 The 'test' directory in this repo is a sample of what the script builds.
