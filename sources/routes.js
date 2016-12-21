@@ -1,9 +1,9 @@
-var CONTROLLERNAME = require('./../controllers/CONTROLLERNAME.js');
+var SCHEMANAMEsCtrl = require('./../controllers/SCHEMANAMEsCtrl.js');
 
 module.exports = function(app) {
-    app.get('/ROUTENAME', CONTROLLERNAME.index);
-    app.get('/ROUTENAME/:id', CONTROLLERNAME.show);
-    app.post('/ROUTENAME', CONTROLLERNAME.create);
-    app.put('/ROUTENAME/:id', CONTROLLERNAME.update);
-    app.delete('/ROUTENAME/:id', CONTROLLERNAME.delete);
+    app.get('/VARIABLENAMEs', SCHEMANAMEsCtrl.index);
+    app.get('/VARIABLENAMEs/:id', SCHEMANAMEsCtrl.show);
+    app.post('/VARIABLENAMEs', SCHEMANAMEsCtrl.create);
+    app.put('/VARIABLENAMEs/:id', SCHEMANAMEsCtrl.update);
+    app.delete('/VARIABLENAMEs/:id', SCHEMANAMEsCtrl.delete);
 }

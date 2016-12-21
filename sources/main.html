@@ -1,15 +1,15 @@
 <div ng-controller="mainController">
 
-	<form ng-submit="submitForm(newItem);">
-		<input type="text" ng-model="newItem.title">
-		<input type="date" ng-model="newItem.dueDate">
+	<form ng-submit="submitForm(newSCHEMANAME);">
+		<input type="text" ng-model="newSCHEMANAME.title">
+		<input type="date" ng-model="newSCHEMANAME.dueDate">
 		<input type="submit" value="Submit">
 	</form>
 
 	<ul>
-		<li ng-repeat="item in items | orderBy: 'dueDate'">
-			<span ng-bind="item.title"></span> -
-			<span ng-bind="item.dueDate | date:'MMM dd, yyyy'"></span>
+		<li ng-repeat="VARIABLENAME in VARIABLENAMEs | orderBy: 'dueDate'">
+			<span ng-bind="VARIABLENAME.title"></span> -
+			<span ng-bind="VARIABLENAME.dueDate | date:'MMM dd, yyyy'"></span>
 		</li>
 	</ul>
 
