@@ -1,15 +1,13 @@
 <div ng-controller="mainController">
 
-	<form ng-submit="submitForm(newSCHEMANAME);">
-		<input type="text" ng-model="newSCHEMANAME.title">
-		<input type="date" ng-model="newSCHEMANAME.dueDate">
+	<form ng-submit="create(newSCHEMANAME);">
+		<input type="text" ng-model="newSCHEMANAME.name">
 		<input type="submit" value="Submit">
 	</form>
 
 	<ul>
-		<li ng-repeat="VARIABLENAME in VARIABLENAMEs | orderBy: 'dueDate'">
-			<span ng-bind="VARIABLENAME.title"></span> -
-			<span ng-bind="VARIABLENAME.dueDate | date:'MMM dd, yyyy'"></span>
+		<li ng-repeat="VARIABLENAME in VARIABLENAMEs>
+			<span ng-bind="VARIABLENAME.name"></span> -
 		</li>
 	</ul>
 
