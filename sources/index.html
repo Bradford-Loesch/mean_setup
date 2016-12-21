@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="app">
 
   <head>
     <meta charset="utf-8">
@@ -9,8 +9,8 @@
       <link rel="stylesheet" href="/styles/styles.css">
 
       <script type="text/javascript" src="/scripts/app.js"></script>
-      <script type="text/javascript" src="/scripts/factory.js"></script>
-      <script type="text/javascript" src="/scripts/controller.js"></script>
+      <script type="text/javascript" src="/scripts/SCHEMANAMEFactory.js"></script>
+      <script type="text/javascript" src="/scripts/SCHEMANAMEController.js"></script>
   </head>
 
   <body>
@@ -18,8 +18,10 @@
       <h3> I should be blue </h3><hr>
 
       <h2>Hello Partials:</h2>
-      
-      <div ng-view=""><!-- This is where the partials will be loaded (ng-route) --></div>
+
+      <div ng-view="">
+          <!-- This is where the partials will be loaded (ng-route) -->
+      </div>
 
   </body>
 </html>

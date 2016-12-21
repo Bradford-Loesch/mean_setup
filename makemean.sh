@@ -1,7 +1,13 @@
 
 #!/bin/bash
+# Get setup variable names
 echo "Please specify a project name."
 read project
+echo "Please specify a model name for the primary schema. This will be used to name your primary schema, http routes, factory and controllers."
+read model
+modelvar="${model,,}"
+echo "Please specify a database name for mongodb."
+read dbname
 mkdir $project
 cd $project
 # create the package.json file
@@ -46,18 +52,14 @@ mkdir controllers
 mkdir models
 cd config
 curl -o routes.js https://raw.githubusercontent.com/theaethelwulf/mean_setup/master/sources/routes.js
-#appends this line to the beginning of routes file (needs to take in variable file name)
-echo "var allItems = require('../controllers/"$project"s.js');"|cat - routes.js > /tmp/out && mv /tmp/out routes.js
+# Replace CONTROLLERNAME SCHEMANAME
+
 # Create mongoose file
 curl -o mongoose.js https://raw.githubusercontent.com/theaethelwulf/mean_setup/master/sources/mongoose.js
-# Replace DATABASENAME (TO DO*********************************)
-echo "Please specify a database name."
-read dbname
+# Replace DATABASENAME
 perl -pi -e "s/DATABASENAME/$dbname/g" mongoose.js
 cd ../controllers
-echo "Please specify a model name for the primary schema."
-read model
-curl -o "$model"sController.js https://raw.githubusercontent.com/theaethelwulf/mean_setup/master/sources/ServerController.js
+curl -o "$model"sCtrl.js https://raw.githubusercontent.com/theaethelwulf/mean_setup/master/sources/ServerController.js
 cd ../models
 curl -o $model.js https://raw.githubusercontent.com/theaethelwulf/mean_setup/master/sources/Schema.js
 cd ../..

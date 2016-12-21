@@ -1,31 +1,31 @@
 var mongoose = require('mongoose'),
-    *MODELNAME* = mongoose.model('*MODELNAME*');
+    SCHEMANAME = mongoose.model('SCHEMANAME');
 
-function *MODELNAME*Controller() {
+function SCHEMANAMEController() {
     this.index = function(req, res) {
-        *MODELNAME*.find({}, function(err, *MODELNAME*s) {
+        SCHEMANAME.find({}, function(err, response) {
             if (err) {
                 console.log(err);
             }
             else {
-                res.json(*MODELNAME*s);
+                res.json(response);
             }
         });
     }
     this.show = function(req, res) {
-        *MODELNAME*.findOne({_id: req.params.id}, function(err, *MODELNAME*) {
+        SCHEMANAME.findOne({_id: req.params.id}, function(err, response) {
             if (err) {
                 console.log(err);
             }
             else {
-                res.json(*MODELNAME*);
+                res.json(response);
             }
         });
     }
     this.create = function(req, res) {
-        var *MODELNAME*Instance = new *MODELNAME*(req.body);
-        *MODELNAME*Instance.created = new Date();
-        *MODELNAME*Instance.save(function(err){
+        var VARIABLENAMEInstance = new SCHEMANAME(req.body);
+        VARIABLENAMEInstance.created = new Date();
+        VARIABLENAMEInstance.save(function(err){
             if(err){
                 console.log(err);
             }
@@ -36,7 +36,7 @@ function *MODELNAME*Controller() {
         });
     }
     this.update = function(req, res) {
-        *MODELNAME*.update({_id: req.params.id}, req.body, function(err){
+        SCHEMANAME.update({_id: req.params.id}, req.body, function(err){
             if(err){
                 console.log(err);
             }
@@ -47,7 +47,7 @@ function *MODELNAME*Controller() {
         });
     }
     this.delete = function(req, res) {
-        *MODELNAME*.remove({_id: req.params.id}, function(err){
+        SCHEMANAME.remove({_id: req.params.id}, function(err){
             if(err){
                 console.log(err);
             }
@@ -59,4 +59,4 @@ function *MODELNAME*Controller() {
     }
 }
 
-module.exports = new *MODELNAME*Controller();
+module.exports = new SCHEMANAMEController();
